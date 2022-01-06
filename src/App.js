@@ -1,8 +1,9 @@
+import './styles/index.css';
 
 function App() {
   return (
     <div className="App">
-
+      <h1>Holi</h1>
     </div>
   );
 }
