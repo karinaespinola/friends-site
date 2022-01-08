@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Hero = () => {
+const Hero = ({ children }) => {
   return (
-    <div className='w-screen h-96' style={{ background: "url('/img/cast-walking.jpeg')"}}>
-      
+    <div className="w-screen bg-center bg-cover bg-[url('../../public/img/cast-walking.jpeg')]">
+      { children }
     </div>
   )
 }
