@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Avatar = ({ characterName }) => {
   return (
-    <div className='max-w-[30%] m-1'>
+    <div className='max-w-[30%] md:max-w-[15%] m-1'>
       <img 
         src={`./img/character-avatars/${characterName}.jpg`} 
         alt={`${characterName} Avatar`}
