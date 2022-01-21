@@ -1,10 +1,20 @@
 import './index.css';
-import { useState } from 'react';
 import axios from 'axios';
 import Gallery from './components/Gallery';
 import Quote from './components/Quote';
 
+const requestCharacter = async (characterName) => {
+  try {
+    const response = await axios.get('https://intense-journey-36207.herokuapp.com/character/monica');
+    console.log(response);
+  } catch(err) {
+    console.log(err);
+  }
+
+}
+
 function App() {
+  requestCharacter('monica');
   return (
     <div className="App">
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
