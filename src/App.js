@@ -5,10 +5,18 @@ import Quote from './components/Quote';
 
 const requestCharacter = async (characterName) => {
   try {
-    const response = await axios.get('https://intense-journey-36207.herokuapp.com/character/monica');
+    const response = await axios.get(
+      'https://intense-journey-36207.herokuapp.com/character/monica',
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+        }
+      }
+      );
     console.log(response);
   } catch(err) {
-    console.log(err);
+    console.log('This is the error:' + err);
   }
 
 }
