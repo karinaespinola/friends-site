@@ -2,27 +2,24 @@ import './index.css';
 import axios from 'axios';
 import Gallery from './components/Gallery';
 import Quote from './components/Quote';
-
-const requestCharacter = async (characterName) => {
-  try {
-    const response = await axios.get(
-      'https://intense-journey-36207.herokuapp.com/character/monica',
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-        }
-      }
-      );
-    console.log(response);
-  } catch(err) {
-    console.log('This is the error:' + err);
-  }
-
-}
+import { useEffect, useState } from 'react';
+import { getAllCharacters } from './lib/helpers';
 
 function App() {
-  requestCharacter('monica');
+  const [characters, setCharacters] = useState(null);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+
+  useEffect(() => {
+    // Get the data from all the characters and update the state if possible
+    const charactersData = getAllCharacters();
+    console.log(charactersData);
+    if(charactersData !== 'undefined') {
+      setCharacters(charactersData);
+    }
+  }, characters)
+
+
+
   return (
     <div className="App">
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
