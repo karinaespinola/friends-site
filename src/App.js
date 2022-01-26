@@ -4,9 +4,14 @@ import Gallery from './components/Gallery';
 import Quote from './components/Quote';
 import { useEffect, useState } from 'react';
 
+
 function App() {
   const [characters, setCharacters] = useState(null);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+
+  const updateSelectedCharacter = ( characterName ) => {
+    setSelectedCharacter(characterName);
+  }
 
   useEffect(() => {
     // Get the data from all the characters and update the state if possible
@@ -37,13 +42,13 @@ function App() {
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
         <section className="container mx-auto grid grid-cols-12 h-80 relative">
           <div className="col-span-12 absolute top-1/4 px-2">
-            <Quote />
+            { selectedCharacter !== null && <Quote /> }
+            
           </div>
           <div className="col-span-10 absolute top-3/4">
             { characters !== null && 
-              <Gallery characters={characters}/>
-            }
-            
+              <Gallery characters={ characters } onClickAvatar={ updateSelectedCharacter }/>
+            }            
           </div>
         </section>
       </div>      
