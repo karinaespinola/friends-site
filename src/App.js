@@ -3,11 +3,13 @@ import axios from 'axios';
 import Gallery from './components/Gallery';
 import Quote from './components/Quote';
 import { useEffect, useState } from 'react';
+import { getRandomQuotePosition } from './lib/helpers';
 
 
 function App() {
   const [characters, setCharacters] = useState(null);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [quotePosition, setQuotePosition] = useState(null);
 
   const getSingleCharacter = async ( characterName ) => {
     try {
@@ -29,6 +31,13 @@ function App() {
   const updateSelectedCharacter = ( characterName ) => {
     // Get data from the selected character
     getSingleCharacter(characterName);
+    
+    // Get a random quote array position from the  selected character quotes array
+    if(selectedCharacter !== null) {
+      const quoteArrayPosition = getRandomQuotePosition(selectedCharacter.quotes);
+      console.log(quoteArrayPosition);
+      setQuotePosition(quoteArrayPosition);
+    }    
     
   }
 
@@ -61,7 +70,7 @@ function App() {
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
         <section className="container mx-auto grid grid-cols-12 h-80 relative">
           <div className="col-span-12 absolute top-1/4 px-2">
-            { selectedCharacter !== null && <Quote /> }
+            { selectedCharacter !== null && <Quote quote={"Hello "}/> }
             
           </div>
           <div className="col-span-10 absolute top-3/4">
