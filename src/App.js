@@ -3,7 +3,6 @@ import axios from 'axios';
 import Gallery from './components/Gallery';
 import Quote from './components/Quote';
 import { useEffect, useState } from 'react';
-import { getAllCharacters } from './lib/helpers';
 
 function App() {
   const [characters, setCharacters] = useState(null);
@@ -11,12 +10,25 @@ function App() {
 
   useEffect(() => {
     // Get the data from all the characters and update the state if possible
-    const charactersData = getAllCharacters();
-    console.log(charactersData);
-    if(charactersData !== 'undefined') {
-      setCharacters(charactersData);
+    const getAllCharacters = async () => {
+      try {
+        const response = await axios.get(
+          'https://intense-journey-36207.herokuapp.com/character/all',
+          {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+        setCharacters(response.data);
+      } catch(err) {
+        console.log(err);
+      }
     }
-  }, characters)
+
+    getAllCharacters();
+  }, [])
 
 
 
@@ -28,7 +40,10 @@ function App() {
             <Quote />
           </div>
           <div className="col-span-10 absolute top-3/4">
-            <Gallery />
+            { characters !== null && 
+              <Gallery characters={characters}/>
+            }
+            
           </div>
         </section>
       </div>      
