@@ -9,8 +9,27 @@ function App() {
   const [characters, setCharacters] = useState(null);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
 
+  const getSingleCharacter = async ( characterName ) => {
+    try {
+      const response = await axios.get(
+        `https://intense-journey-36207.herokuapp.com/character/${characterName}`,
+        {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      setSelectedCharacter(response.data);
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
   const updateSelectedCharacter = ( characterName ) => {
-    setSelectedCharacter(characterName);
+    // Get data from the selected character
+    getSingleCharacter(characterName);
+    
   }
 
   useEffect(() => {

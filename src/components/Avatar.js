@@ -9,14 +9,15 @@ const Avatar = ({ characterName, source, onClickAvatar }) => {
         alt={ `${characterName} Avatar` }
         className='rounded-full border-4 border-white'
         id={ characterName } 
-        onClick={(e) => { onClickAvatar(e.target.id); console.log(e.target);}}
+        onClick={(e) => { onClickAvatar(e.target.id);}}
       />
     </div>
   )
 }
 
 Avatar.propTypes = {
-  characterName: PropTypes.string.isRequired
+  characterName: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired
 }
 
 export default Avatar
