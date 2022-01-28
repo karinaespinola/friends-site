@@ -22,7 +22,9 @@ function App() {
           }
         }
       );
-      setSelectedCharacter(response.data);
+      if(response.data.length > 0) {
+        setSelectedCharacter(response.data[0]);
+      }      
     } catch(err) {
       console.log(err);
     }
@@ -31,14 +33,7 @@ function App() {
   const updateSelectedCharacter = ( characterName ) => {
     // Get data from the selected character
     getSingleCharacter(characterName);
-    
-    // Get a random quote array position from the  selected character quotes array
-    if(selectedCharacter !== null) {
-      const quoteArrayPosition = getRandomQuotePosition(selectedCharacter.quotes);
-      console.log(quoteArrayPosition);
-      setQuotePosition(quoteArrayPosition);
-    }    
-    
+
   }
 
   useEffect(() => {
@@ -63,6 +58,13 @@ function App() {
     getAllCharacters();
   }, [])
 
+  useEffect(() => {
+      if(selectedCharacter !== null) {
+        // Get a random quote array position from the  selected character quotes array
+        const quoteArrayPosition = getRandomQuotePosition(selectedCharacter.quotes);            
+        setQuotePosition(quoteArrayPosition);
+      }
+  }, [selectedCharacter]);
 
 
   return (
@@ -70,7 +72,7 @@ function App() {
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
         <section className="container mx-auto grid grid-cols-12 h-80 relative">
           <div className="col-span-12 absolute top-1/4 px-2">
-            { selectedCharacter !== null && <Quote quote={"Hello "}/> }
+            { selectedCharacter !== null && <Quote quote={selectedCharacter.quotes[quotePosition]}/> }
             
           </div>
           <div className="col-span-10 absolute top-3/4">

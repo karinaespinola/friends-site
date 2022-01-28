@@ -1,7 +1,7 @@
 const getRandomQuotePosition = ( quotes ) => {
   const quotesNumber = quotes.length;
-  console.log(quotesNumber);
-  return Math.floor(Math.random * quotesNumber);
+  const arrayPosition = Math.floor(Math.random() * quotesNumber);
+  return arrayPosition;
 }
 
 
