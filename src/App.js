@@ -66,7 +66,7 @@ function App() {
       }
   }, [selectedCharacter]);
 
-
+  
   return (
     <div className="App">
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
