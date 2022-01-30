@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Avatar = ({ characterName, source, onClickAvatar }) => {
   return (
-    <div className='max-w-[20%] md:max-w-[15%] m-1'>
+    <div className='max-w-[20%] md:max-w-[10%] m-1'>
       <img 
         src={ source } 
         alt={ `${characterName} Avatar` }
