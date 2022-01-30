@@ -4,12 +4,14 @@ import Gallery from './components/Gallery';
 import Quote from './components/Quote';
 import { useEffect, useState } from 'react';
 import { getRandomQuotePosition } from './lib/helpers';
+import { RotateLoader } from 'react-spinners';
 
 
 function App() {
   const [characters, setCharacters] = useState(null);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [quotePosition, setQuotePosition] = useState(null);
+  const [loadingQuote, setLoadingQuote] = useState(false);
 
   const getSingleCharacter = async ( characterName ) => {
     try {
@@ -71,13 +73,19 @@ function App() {
     <div className="App">
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
         <section className="container mx-auto grid grid-cols-12 h-80 md:h-screen relative">
-          <div className="col-span-12 absolute top-1/4 px-2">
-            { selectedCharacter !== null && <Quote quote={selectedCharacter.quotes[quotePosition]}/> }
-            
+          <div className="col-span-12 absolute top-1/4 px-2 w-full text-center">
+            { selectedCharacter !== null && 
+              <Quote quote={selectedCharacter.quotes[quotePosition]}/> 
+            }            
           </div>
           <div className="col-span-10 absolute top-3/4">
             { characters !== null && 
-              <Gallery characters={ characters } onClickAvatar={ updateSelectedCharacter }/>
+              <Gallery 
+              characters={ characters } 
+              onClickAvatar={ updateSelectedCharacter }
+              selectedCharacter={ selectedCharacter } 
+              loadingQuote={ loadingQuote }
+              />
             }            
           </div>
         </section>
