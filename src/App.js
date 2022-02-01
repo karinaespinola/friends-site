@@ -26,6 +26,7 @@ function App() {
       );
       if(response.data.length > 0) {
         setSelectedCharacter(response.data[0]);
+        setLoadingQuote(false);
       }      
     } catch(err) {
       console.log(err);
@@ -33,6 +34,8 @@ function App() {
   }
 
   const updateSelectedCharacter = ( characterName ) => {
+    // Show spinner
+    setLoadingQuote(true);
     // Get data from the selected character
     getSingleCharacter(characterName);
 
@@ -79,12 +82,12 @@ function App() {
             }            
           </div>
           <div className="col-span-10 absolute top-3/4 flex justify-center w-full">
-            { characters !== null && 
+            {characters !== null && 
               <Gallery 
-              characters={ characters } 
-              onClickAvatar={ updateSelectedCharacter }
-              selectedCharacter={ selectedCharacter } 
-              loadingQuote={ loadingQuote }
+              characters={characters} 
+              onClickAvatar={updateSelectedCharacter}
+              selectedCharacter={selectedCharacter} 
+              loadingQuote={loadingQuote}
               />
             }            
           </div>
