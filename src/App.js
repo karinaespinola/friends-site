@@ -78,7 +78,7 @@ function App() {
               <Quote quote={selectedCharacter.quotes[quotePosition]}/> 
             }            
           </div>
-          <div className="col-span-10 absolute top-3/4">
+          <div className="col-span-10 absolute top-3/4 flex justify-center w-full">
             { characters !== null && 
               <Gallery 
               characters={ characters } 
