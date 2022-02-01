@@ -1,8 +1,9 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { RotateLoader } from 'react-spinners';
 
-const Avatar = ({ characterName, source, onClickAvatar, loadingQuote }) => {
+const Avatar = ({ characterName, source, onClickAvatar, loadingQuote, selectedCharacter }) => {
   const spinnerCss = `
   display: block;
   margin: 0 auto;
@@ -10,9 +11,17 @@ const Avatar = ({ characterName, source, onClickAvatar, loadingQuote }) => {
   top: 45%;
   left: 45%;
 `;
-  return (
+const [showSpinner, setShowSpinner] = useState(false);
+
+useEffect(() => {
+  if(loadingQuote === false) {
+    setShowSpinner(false);
+  }
+}, [loadingQuote])
+
+ return (
     <div className='w-[100px] md:w-[130px] m-1'>
-      {loadingQuote
+      {loadingQuote && showSpinner
       ? <div className='w-[100px] md:w-[130px] h-[100px] md:h-[130px] bg-[#9C8CD4] relative rounded-full'>
         <RotateLoader color="#D2C385" css={spinnerCss} size={11}/>
       </div>
@@ -21,7 +30,11 @@ const Avatar = ({ characterName, source, onClickAvatar, loadingQuote }) => {
         alt={`${characterName} Avatar`}
         className='rounded-full border-4 border-white'
         id={characterName} 
-        onClick={(e) => { onClickAvatar(e.target.id);}}
+        onClick={(e) => { 
+          onClickAvatar(e.target.id);
+          setShowSpinner(true);
+        }
+        }
       />
       }
     </div>

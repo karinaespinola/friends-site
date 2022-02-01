@@ -42,6 +42,14 @@ function App() {
   }
 
   useEffect(() => {
+    if(selectedCharacter !== null) {
+      // Get a random quote array position from the  selected character quotes array
+      const quoteArrayPosition = getRandomQuotePosition(selectedCharacter.quotes);            
+      setQuotePosition(quoteArrayPosition);
+    }
+}, [selectedCharacter]);
+
+  useEffect(() => {
     // Get the data from all the characters and update the state if possible
     const getAllCharacters = async () => {
       try {
@@ -63,15 +71,7 @@ function App() {
     getAllCharacters();
   }, [])
 
-  useEffect(() => {
-      if(selectedCharacter !== null) {
-        // Get a random quote array position from the  selected character quotes array
-        const quoteArrayPosition = getRandomQuotePosition(selectedCharacter.quotes);            
-        setQuotePosition(quoteArrayPosition);
-      }
-  }, [selectedCharacter]);
-
-  
+ 
   return (
     <div className="App">
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
