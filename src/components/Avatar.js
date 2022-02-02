@@ -12,31 +12,35 @@ const Avatar = ({ characterName, source, onClickAvatar, loadingQuote, selectedCh
   left: 45%;
 `;
 const [showSpinner, setShowSpinner] = useState(false);
+const [loadingImage, setLoadingImage] = useState(true);
 
 useEffect(() => {
   if(loadingQuote === false) {
     setShowSpinner(false);
   }
 }, [loadingQuote])
+const spinnerClass = (loadingQuote && showSpinner) || (loadingImage)  ? 'block' : 'hidden';
+const imageClass = spinnerClass === 'block' ? 'hidden' : 'block';
 
  return (
     <div className='w-[100px] md:w-[130px] m-1'>
-      {loadingQuote && showSpinner
-      ? <div className='w-[100px] md:w-[130px] h-[100px] md:h-[130px] bg-[#9C8CD4] relative rounded-full'>
+      <div 
+        className={`w-[100px] md:w-[130px] h-[100px] md:h-[130px] bg-[#9C8CD4] relative rounded-full ${spinnerClass}`}
+      >
         <RotateLoader color="#D2C385" css={spinnerCss} size={11}/>
       </div>
-      : <img 
+      <img 
         src={source} 
         alt={`${characterName} Avatar`}
-        className='rounded-full border-4 border-white'
+        className={`rounded-full border-4 border-white ${imageClass}`}
         id={characterName} 
         onClick={(e) => { 
           onClickAvatar(e.target.id);
           setShowSpinner(true);
-        }
-        }
+        }}
+        onLoad={() => setLoadingImage(false)}
       />
-      }
+      
     </div>
   )
 }
