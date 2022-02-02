@@ -73,7 +73,7 @@ function App() {
 
  
   return (
-    <div className="App">
+    <div className="App bg-[url('../public/img/subway-background.jpg')] h-screen w-screen">
       <div className="w-screen bg-center bg-cover bg-[url('../public/img/cast-walking.jpeg')]">
         <section className="container mx-auto grid grid-cols-12 h-80 md:h-screen relative">
           <div className="col-span-12 absolute top-1/4 px-2 w-full text-center">
