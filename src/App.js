@@ -4,7 +4,6 @@ import Gallery from './components/Gallery';
 import Quote from './components/Quote';
 import { useEffect, useState } from 'react';
 import { getRandomQuotePosition } from './lib/helpers';
-import { RotateLoader } from 'react-spinners';
 
 
 function App() {
