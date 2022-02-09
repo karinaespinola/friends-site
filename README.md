@@ -1,5 +1,7 @@
 # Friends Site
-This is a personal project in which a small site dedicated to one of my favorite TV shows FRIENDS. The idea of this site is to have a gallery with a picture of the characters and when the user clicks on any character then a quote from that character will be displayed on screen. So everytime the photo is clicked a new quote is displayed. The idea is pretty simple. The quotes are coming from another project of mine that you can find on this account here: [friends-api](https://github.com/karinaespinola/friends-api) and it's a pretty simple API with Node.js and mongoDB and actually it's already live on Heroku. 
+This is a personal project in which a small site dedicated to one of my favorite TV shows FRIENDS. The idea of this site is to have a gallery with a picture of the characters and when the user clicks on any character then a quote from that character will be displayed on screen. So everytime the photo is clicked a new quote is displayed. The idea is pretty simple. The quotes are coming from another project of mine that you can find on this account here: [friends-api](https://github.com/karinaespinola/friends-api) and it's a pretty simple API with Node.js and mongoDB and actually it's already live on Heroku.
+
+You can find the live version here [https://friends.karinaespinola.dev/](https://friends.karinaespinola.dev/)
 
 # Getting Started with Create React App
 
